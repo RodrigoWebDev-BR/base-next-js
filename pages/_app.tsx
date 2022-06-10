@@ -1,7 +1,7 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import styles from '../styles/Home.module.css'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, JSXElementConstructor, Key, ReactElement, ReactFragment, ReactPortal } from 'react'
 
 const URL_API = "https://fakestoreapi.com/products/"
 
@@ -36,10 +36,16 @@ export default function Home() {
   return (
     <div className={styles.container}>
       {loading && !data && <h2>Carregando...</h2>}
-      {data && data.map((products) => 
-          (<p key={products.id}>{products.title}</p>
-
-          ))}
+      {data && data.map((products) => {
+          return (<li key={products.id}>
+            {products.title}
+            {products.price}
+            {products.category}
+            {products.description}
+            {products.image}
+          </li>
+          )
+        })}
     </div>
   )
 
